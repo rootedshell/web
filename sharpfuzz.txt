@@ -1,0 +1,69 @@
+sudo apt install build-essential
+sudo apt-get install manpages-dev
+gcc --version
+
+AFL_NO_X86=1 gmake && gmake -C llvm_mode
+
+
+dotnet tool list --global
+../.dotnet/tools/sharpfuzz Jil.dll
+
+
+
+dotnet add package Sigil
+
+dotnet add package SharpFuzz
+
+
+/etc/profile
+PATH=$PATH:$HOME/.dotnet/tools
+
+export PATH=/root/.dotnet/tools/sharpfuzz:$PATH
+
+
+
+dotnet tool install -g sharpfuzz
+
+sudo apt install mono-complete
+
+mcs -out:fuzz.exe Program.cs
+
+mono fuzz.exe
+
+dotnet build
+
+{"menu":{"id":1,"val":"X","pop":{"a":[{"click":"Open()"},{"click":"Close()"}]}}}
+
+
+
+afl-fuzz -i /root/sample/testcase -o /root/sample/findings -t 5000 dotnet /root/sample/bin/Debug/netcoreapp3.1/new.dll
+
+afl-fuzz -i /root/events/testcase -o /root/events/findings -n -t 5000 dotnet /root/events/bin/Debug/netcoreapp3.1/events.dll
+
+
+afl-showmap -o- dotnet bin/Debug/netcoreapp2.2/Jil.dll 
+
+
+/root/events/bin/Debug/netcoreapp3.1/Jil.dll
+
+afl-fuzz -i Testcases -o Findings -t 5000 \
+ dotnet /root/events/bin/Debug/netcoreapp3.1/events.dll
+
+afl-showmap -o- dotnet /root/events/bin/Debug/netcoreapp3.1/Jil.dll 
+
+
+
+
+afl-fuzz -i /root/sharpfuzz-samples/Jil/Testcases -n -o /root/sharpfuzz-samples/Jil/Findings -t 5000 dotnet /root/sharpfuzz-samples/Jil/Jil.Fuzz/bin/Debug/netcoreapp2.2/Jil.Fuzz.dll
+
+
+afl-fuzz -i /root/sharpfuzz-samples/AngleSharp/Testcases -n -o /root/sharpfuzz-samples/AngleSharp/Findings -t 5000 dotnet /root/sharpfuzz-samples/AngleSharp/AngleSharp.Fuzz/bin/Debug/netcoreapp2.2/AngleSharp.Fuzz.dll
+
+/root/sharpfuzz-samples/AngleSharp
+afl-fuzz -i Testcases -o Findings -t 5000 \
+  dotnet bin/Debug/netcoreapp2.1/Fuzzing.dll
+
+
+ulimit -Sv $[499 << 10]; /path/to/fuzzed_app
+
+afl-fuzz -i Testcases -n -o Findings -t 5000 dotnet /root/sharpfuzz-samples/Jil/Jil.Fuzz/bin/Debug/netcoreapp2.2/Jil.Fuzz.dll

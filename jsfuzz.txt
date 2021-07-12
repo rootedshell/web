@@ -1,0 +1,7 @@
+rm -rf node_modules package-lock.json && npm install && npm start
+
+npm fund
+
+npm i -D nyc
+
+npx nyc --help
